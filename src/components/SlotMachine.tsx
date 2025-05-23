@@ -20,12 +20,12 @@ const SlotMachine: React.FC = () => {
   } = useSlotMachine();
 
   const filteredNumbers = filterReviewOnly
-    ? completedNumbers.filter(item => item.needsReview)
+    ? completedNumbers.filter(item => item.needs_review)
     : completedNumbers;
 
   const sortedCompletedNumbers = [...filteredNumbers].sort((a, b) => a.number - b.number);
   const progressPercentage = (completedNumbers.length / 169) * 100;
-  const needsReviewCount = completedNumbers.filter(item => item.needsReview).length;
+  const needsReviewCount = completedNumbers.filter(item => item.needs_review).length;
 
   return (
     <div className="flex flex-col items-center justify-center w-full max-w-2xl mx-auto">
@@ -156,14 +156,14 @@ const SlotMachine: React.FC = () => {
 
         {showCompleted && sortedCompletedNumbers.length > 0 && (
           <div className="mt-4 grid grid-cols-8 gap-2">
-            {sortedCompletedNumbers.map(({ number, needsReview }) => (
+            {sortedCompletedNumbers.map(({ number, needs_review }) => (
               <button
                 key={number}
                 onClick={() => toggleNumberReview(number)}
                 className={`
                   text-sm font-medium px-2 py-1 rounded-md text-center
                   transition-colors duration-200 relative group
-                  ${needsReview 
+                  ${needs_review 
                     ? 'bg-amber-100 text-amber-800 hover:bg-amber-200' 
                     : 'bg-green-100 text-green-800 hover:bg-green-200'}
                 `}
@@ -171,10 +171,10 @@ const SlotMachine: React.FC = () => {
                 {number}
                 <span className={`
                   absolute -top-1 -right-1 w-3 h-3
-                  ${needsReview ? 'text-amber-500' : 'text-green-500 opacity-0 group-hover:opacity-100'}
+                  ${needs_review ? 'text-amber-500' : 'text-green-500 opacity-0 group-hover:opacity-100'}
                   transition-opacity duration-200
                 `}>
-                  {needsReview ? <Flag className="w-full h-full" /> : <FlagOff className="w-full h-full" />}
+                  {needs_review ? <Flag className="w-full h-full" /> : <FlagOff className="w-full h-full" />}
                 </span>
               </button>
             ))}

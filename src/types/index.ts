@@ -10,5 +10,5 @@ export interface SpinButtonProps {
 
 export interface CompletedNumber {
   number: number;
-  needsReview: boolean;
+  needs_review: boolean;
 }

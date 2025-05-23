@@ -64,7 +64,7 @@ export const useSlotMachine = () => {
       setCompletedNumbers(prev => prev.filter(item => item.number !== currentNumber));
     } else {
       await saveCompletedNumber(currentNumber);
-      setCompletedNumbers(prev => [...prev, { number: currentNumber, needsReview: false }]);
+      setCompletedNumbers(prev => [...prev, { number: currentNumber, needs_review: false }]);
     }
     
     setAllCompleted(await isAllCompleted());
